@@ -62,10 +62,12 @@
     }
 
     function handleClose(e) {
-        e.stopPropagation()
-        bottomSheetRoot.classList.toggle("open")
-        bottomSheetRoot.clientWidth;
-        bottomSheetRoot.classList.toggle("hidden")
+        e.stopPropagation();
+        // Wait for the transition to end before hiding the bottom sheet
+        bottomSheetRoot.addEventListener("transitionend", function() {
+            bottomSheetRoot.classList.toggle("hidden");
+        }, { once: true });
+        bottomSheetRoot.classList.toggle("open");        
     }
 
 </script>
